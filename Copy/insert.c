@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   insert.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wchan-ha <wchan-ha@student.42kl.edu.m      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/21 14:37:53 by wchan-ha          #+#    #+#             */
+/*   Updated: 2026/07/23 15:46:05 by wchan-ha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+int	logic_checking(int matrix[9][9], int input[9][9]);
+
+int	check_noduplicate(int matrix[9][9], int y, int x, int val);
+
+int	insert(int matrix[9][9], int input[9][9], int y, int x)
+{
+	int	val;
+
+	if (y == 9)
+	{
+		return (logic_checking(matrix, input));
+	}
+	if (x == 9)
+	{
+		return (insert (matrix, input, y + 1, 0));
+	}
+	val = 1;
+	while (val < 10)
+	{
+		if (check_noduplicate(matrix, y, x, val))
+		{
+			matrix[y][x] = val;
+			if (insert(matrix, input, y, x + 1))
+				return (1);
+			matrix[y][x] = 0;
+		}
+		val ++;
+	}
+	return (0);
+}
