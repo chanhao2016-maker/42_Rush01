@@ -6,7 +6,7 @@
 /*   By: hho-jia- <hho-jia-@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:16:44 by hho-jia-          #+#    #+#             */
-/*   Updated: 2025/03/09 18:55:17 by ktiew            ###   ########.fr       */
+/*   Updated: 2026/07/24 14:00:19 by ktiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_data
+{
+	char	**grid;
+	char	**clues;
+	int		size;
+}	t_data;
 
 void	ft_putchar(char c);
 void	print_error(void);
