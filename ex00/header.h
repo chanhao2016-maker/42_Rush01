@@ -33,8 +33,8 @@ char	**create_grid(void);
 void	put_clues(char **puzzle_grid, char **clues);
 char	**save_clues(char *str);
 
-int		check_left_clue(char **puzzle_board, int row);
-int		check_top_clue(char **puzzle_board, int column);
+int		check_left_clue(t_data *master, int row);
+int		check_top_clue(t_data *master, int column);
 int		check_above31_8(int count);
 int		count_n_clue(char *s);
 int		is_valid_input(char **argv);

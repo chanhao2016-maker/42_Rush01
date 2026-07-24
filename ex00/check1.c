@@ -12,28 +12,28 @@
 
 #include "header.h"
 
-int	check_right_clue(char **puzzle_grid, int row)
+int	check_right_clue(t_data *master, int row)
 {
 	int		index;
 	char	visible;
 	char	highest;
 
-	index = 4;
+	index = master->size;
 	visible = '1';
-	highest = puzzle_grid[row][index];
+	highest = master->grid[row][index];
 	while (index >= 1)
 	{
-		if (puzzle_grid[row][index] > highest)
+		if (master->grid[row][index] > highest)
 		{
-			highest = puzzle_grid[row][index];
+			highest = master->grid[row][index];
 			visible++;
 		}
 		index--;
 	}
-	return (puzzle_grid[row][5] == visible);
+	return (master->clues[3][row - 1] == visible);
 }
 
-int	check_left_clue(char **puzzle_grid, int row)
+int	check_left_clue(t_data *master, int row)
 {
 	int		index;
 	char	visible;
@@ -41,43 +41,43 @@ int	check_left_clue(char **puzzle_grid, int row)
 
 	index = 1;
 	visible = '1';
-	highest = puzzle_grid[row][index];
-	while (index <= 4)
+	highest = master->grid[row][index];
+	while (index <= master->size)
 	{
-		if (puzzle_grid[row][index] > highest)
+		if (master->grid[row][index] > highest)
 		{
-			highest = puzzle_grid[row][index];
+			highest = master->grid[row][index];
 			visible++;
 		}
 		index++;
 	}
-	if (puzzle_grid[row][0] == visible)
-		return (check_right_clue(puzzle_grid, row));
+	if (master->clues[2][row - 1] == visible)
+		return (check_right_clue(master, row));
 	return (0);
 }
 
-int	check_bottom_clue(char **puzzle_grid, int column)
+int	check_bottom_clue(t_data *master, int column)
 {
 	int		index;
 	char	visible;
 	char	highest;
 
-	index = 4;
+	index = master->size;
 	visible = '1';
-	highest = puzzle_grid[index][column];
+	highest = master->grid[index][column];
 	while (index >= 1)
 	{
-		if (puzzle_grid[index][column] > highest)
+		if (master->grid[index][column] > highest)
 		{
-			highest = puzzle_grid[index][column];
+			highest = master->grid[index][column];
 			visible++;
 		}
 		index--;
 	}
-	return (puzzle_grid[5][column] == visible);
+	return (master->clues[1][column - 1] == visible);
 }
 
-int	check_top_clue(char **puzzle_grid, int column)
+int	check_top_clue(t_data *master, int column)
 {
 	int		index;
 	char	visible;
@@ -85,17 +85,17 @@ int	check_top_clue(char **puzzle_grid, int column)
 
 	index = 1;
 	visible = '1';
-	highest = puzzle_grid[index][column];
-	while (index <= 4)
+	highest = master->grid[index][column];
+	while (index <= master->size)
 	{
-		if (puzzle_grid[index][column] > highest)
+		if (master->grid[index][column] > highest)
 		{
-			highest = puzzle_grid[index][column];
+			highest = master->grid[index][column];
 			visible++;
 		}
 		index++;
 	}
-	if (puzzle_grid[0][column] == visible)
-		return (check_bottom_clue(puzzle_grid, column));
+	if (master->clues[0][column - 1] == visible)
+		return (check_bottom_clue(master, column));
 	return (0);
 }

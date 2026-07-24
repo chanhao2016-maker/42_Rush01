@@ -15,7 +15,7 @@
 void	solve_next_row(t_data *master, int row, int column)
 {
 	rush_recursive(master, row + 1, 1);
-	if (row == master->size && check_top_clue(master->grid, column))
+	if (row == master->size && check_top_clue(master, column))
 		print_solution(master->grid);
 }
 
@@ -30,11 +30,11 @@ void	rush_recursive(t_data *master, int row, int column)
 		if (is_valid_move(master->grid, row, column, index))
 		{
 			master->grid[row][column] = index + '0';
-			if (row == master->size && !check_top_clue(master->grid, column))
+			if (row == master->size && !check_top_clue(master, column))
 				return ;
 			if (column == master->size)
 			{
-				if (check_left_clue(master->grid, row))
+				if (check_left_clue(master, row))
 					solve_next_row(master, row, column);
 			}
 			else
