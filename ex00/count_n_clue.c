@@ -6,7 +6,7 @@
 /*   By: wchan-ha <wchan-ha@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 09:49:36 by wchan-ha          #+#    #+#             */
-/*   Updated: 2026/07/24 11:21:17 by wchan-ha         ###   ########.fr       */
+/*   Updated: 2026/07/24 11:34:53 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	check_above31_8(int count)
 	int	i;
 
 	i = 8;
-	while ((count != (31 + i)) && (count > (31 + i)))	
-		i*=2;
+	while ((count != (31 + i)) && (count > (31 + i)))
+		i *= 2;
 	if (count == 31 || count == (31 + i))
 		return (1);
 	return (0);
 }
 
-#include <stdio.h>
+/*#include <stdio.h>
 int	main(void)
 {
 	char *s3 = "1 2 3 1 2 3 1 2 3 1 2 3";
@@ -68,4 +68,4 @@ int	main(void)
 	printf("invalid Return: %d\n", check_above31_8(31 + 2));
 	printf("31 + double 8 return: %d\n", check_above31_8(31 + 8 + 8));
 	printf("invalid Return: %d\n", check_above31_8(0));
-}
+}*/
