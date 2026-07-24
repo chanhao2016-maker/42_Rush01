@@ -6,7 +6,7 @@
 /*   By: hho-jia- <hho-jia-@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:16:44 by hho-jia-          #+#    #+#             */
-/*   Updated: 2026/07/24 14:00:19 by ktiew            ###   ########.fr       */
+/*   Updated: 2026/07/24 14:47:10 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ char	**save_clues(char *str);
 
 int		check_left_clue(char **puzzle_board, int row);
 int		check_top_clue(char **puzzle_board, int column);
+int		check_above31_8(int count);
+int		count_n_clue(char *s);
 int		is_valid_input(char **argv);
 int		is_valid_move(char **puzzle_grid, int row, int column, int index);
 int		check_column(char **puzzle_board, int row, int column, int digit);
 int		check_row(char **puzzle_board, int row, int column, int digit);
 
-void	solve_next_row(char **puzzle_grid, int row, int column);
-void	rush_recursive(char **puzzle_grid, int row, int column);
-void	rush(char **clues);
+void	solve_next_row(t_data *master, int row, int column);
+void	rush_recursive(t_data *master, int row, int column);
+void	rush(t_data *master);
 
 #endif

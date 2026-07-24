@@ -27,7 +27,7 @@ int	is_valid_input(char **argv)
 			count++;
 		index++;
 	}
-	if (count == 31)
+	if (check_above31_8(count))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ktiew <ktiew@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:47:21 by ktiew             #+#    #+#             */
-/*   Updated: 2025/03/09 18:47:40 by ktiew            ###   ########.fr       */
+/*   Updated: 2026/07/24 14:47:59 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	free_memory(char **str, int rows)
 			free(str[index]);
 		index++;
 	}
-	free(str);
 }
 
 char	**allocate_memory(int rows, int columns)

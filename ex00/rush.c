@@ -12,45 +12,44 @@
 
 #include "header.h"
 
-void	solve_next_row(char **puzzle_grid, int row, int column)
+void	solve_next_row(t_data *master, int row, int column)
 {
-	rush_recursive(puzzle_grid, row + 1, 1);
-	if (row == 4 && check_top_clue(puzzle_grid, column))
-		print_solution(puzzle_grid);
+	rush_recursive(master, row + 1, 1);
+	if (row == master->size && check_top_clue(master->grid, column))
+		print_solution(master->grid);
 }
 
-void	rush_recursive(char **puzzle_grid, int row, int column)
+void	rush_recursive(t_data *master, int row, int column)
 {
 	int	index;
 
 	index = 1;
-	while (index <= 4 && row <= 4 && column <= 4)
+	while (index <= master->size && row <= master->size
+		&& column <= master->size)
 	{
-		if (is_valid_move(puzzle_grid, row, column, index))
+		if (is_valid_move(master->grid, row, column, index))
 		{
-			puzzle_grid[row][column] = index + '0';
-			if (row == 4 && !check_top_clue(puzzle_grid, column))
+			master->grid[row][column] = index + '0';
+			if (row == master->size && !check_top_clue(master->grid, column))
 				return ;
-			if (column == 4)
+			if (column == master->size)
 			{
-				if (check_left_clue(puzzle_grid, row))
-					solve_next_row(puzzle_grid, row, column);
+				if (check_left_clue(master->grid, row))
+					solve_next_row(master, row, column);
 			}
 			else
-				rush_recursive(puzzle_grid, row, column + 1);
+				rush_recursive(master, row, column + 1);
 		}
 		index++;
 	}
 }
 
-void	rush(char **clues)
+void	rush(t_data *master)
 {
-	char	**puzzle_grid;
-
-	puzzle_grid = create_grid();
-	put_clues(puzzle_grid, clues);
-	rush_recursive(puzzle_grid, 1, 1);
-	if (puzzle_grid[0][0] == '0')
+	master->grid = create_grid();
+	put_clues(master->grid, master->clues);
+	rush_recursive(master, 1, 1);
+	if (master->grid[0][0] == '0')
 		print_error();
-	free_memory(puzzle_grid, 6);
+	free_memory(master->grid, 6);
 }
