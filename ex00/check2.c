@@ -32,7 +32,7 @@ int	is_valid_input(char **argv)
 	return (0);
 }
 
-int	is_valid_move(char **puzzle_grid, int row, int column, int index)
+int	check_no_duplicate(char **puzzle_grid, int row, int column, int index)
 {
 	return (!check_column(puzzle_grid, row, column, index)
 		&& !check_row(puzzle_grid, row, column, index));

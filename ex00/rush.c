@@ -27,7 +27,7 @@ void	rush_recursive(t_data *master, int row, int column)
 	while (index <= master->size && row <= master->size
 		&& column <= master->size)
 	{
-		if (is_valid_move(master->grid, row, column, index))
+		if (check_no_duplicate(master->grid, row, column, index))
 		{
 			master->grid[row][column] = index + '0';
 			if (row == master->size && !check_top_clue(master, column))

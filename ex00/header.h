@@ -38,7 +38,7 @@ int		check_top_clue(t_data *master, int column);
 int		check_above31_8(int count);
 int		count_n_clue(char *s);
 int		is_valid_input(char **argv);
-int		is_valid_move(char **puzzle_grid, int row, int column, int index);
+int		check_no_duplicate(char **puzzle_grid, int row, int column, int index);
 int		check_column(char **puzzle_board, int row, int column, int digit);
 int		check_row(char **puzzle_board, int row, int column, int digit);
 
