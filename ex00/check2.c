@@ -32,34 +32,16 @@ int	is_valid_input(char **argv)
 	return (0);
 }
 
-int	is_valid_move(char **puzzle_grid, int row, int column, int index)
-{
-	return (!check_column(puzzle_grid, row, column, index)
-		&& !check_row(puzzle_grid, row, column, index));
-}
-
-int	check_row(char **puzzle_board, int row, int column, int digit)
+int	check_no_duplicate(t_data *master, int row, int column, int digit)
 {
 	int	index;
 
 	index = 1;
-	while (index < column)
+	while (index < master->size)
 	{
-		if (puzzle_board[row][index] == digit + '0')
+		if (master->grid[row][index] == digit + '0')
 			return (1);
-		index++;
-	}
-	return (0);
-}
-
-int	check_column(char **puzzle_board, int row, int column, int digit)
-{
-	int	index;
-
-	index = 1;
-	while (index < row)
-	{
-		if (puzzle_board[index][column] == digit + '0')
+		if (master->grid[index][column] == digit + '0')
 			return (1);
 		index++;
 	}
