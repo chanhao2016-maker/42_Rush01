@@ -11,23 +11,16 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
+
 int	main(int argc, char **argv)
 {
 	t_data	master;
 
 	master = (t_data){0};
-	if (argc == 1)
-		print_error();
-	else if (!is_valid_input(argv) || argc != 2)
-		print_error();
-	else
-	{
-		master.size = count_n_clue(argv[1]);
-		master.clues = save_clues(argv[1], master.size);
-		printf("Size is %d\n", master.size);
-		rush(&master);
-		free_memory(master.clues, master.size);
-	}
+	if (argc != 2)
+		return (print_error(), EXIT_FAILURE);
+	if (parser(&master, argv[1]))
+		return (print_error(), EXIT_FAILURE);
+	rush(&master);
 	return (0);
 }

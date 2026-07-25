@@ -18,10 +18,10 @@ int	check_right_clue(t_data *master, int row)
 	char	visible;
 	char	highest;
 
-	index = master->size;
+	index = master->size - 1;
 	visible = '1';
 	highest = master->grid[row][index];
-	while (index >= 1)
+	while (index >= 0)
 	{
 		if (master->grid[row][index] > highest)
 		{
@@ -30,7 +30,7 @@ int	check_right_clue(t_data *master, int row)
 		}
 		index--;
 	}
-	return (master->clues[3][row - 1] == visible);
+	return (master->clues[3][row] == visible);
 }
 
 int	check_left_clue(t_data *master, int row)
@@ -39,10 +39,10 @@ int	check_left_clue(t_data *master, int row)
 	char	visible;
 	char	highest;
 
-	index = 1;
+	index = 0;
 	visible = '1';
 	highest = master->grid[row][index];
-	while (index <= master->size)
+	while (index < master->size)
 	{
 		if (master->grid[row][index] > highest)
 		{
@@ -51,7 +51,7 @@ int	check_left_clue(t_data *master, int row)
 		}
 		index++;
 	}
-	if (master->clues[2][row - 1] == visible)
+	if (master->clues[2][row] == visible)
 		return (check_right_clue(master, row));
 	return (0);
 }
@@ -62,10 +62,10 @@ int	check_bottom_clue(t_data *master, int column)
 	char	visible;
 	char	highest;
 
-	index = master->size;
+	index = master->size - 1;
 	visible = '1';
 	highest = master->grid[index][column];
-	while (index >= 1)
+	while (index >= 0)
 	{
 		if (master->grid[index][column] > highest)
 		{
@@ -74,7 +74,7 @@ int	check_bottom_clue(t_data *master, int column)
 		}
 		index--;
 	}
-	return (master->clues[1][column - 1] == visible);
+	return (master->clues[1][column] == visible);
 }
 
 int	check_top_clue(t_data *master, int column)
@@ -83,10 +83,10 @@ int	check_top_clue(t_data *master, int column)
 	char	visible;
 	char	highest;
 
-	index = 1;
+	index = 0;
 	visible = '1';
 	highest = master->grid[index][column];
-	while (index <= master->size)
+	while (index < master->size)
 	{
 		if (master->grid[index][column] > highest)
 		{
@@ -95,7 +95,7 @@ int	check_top_clue(t_data *master, int column)
 		}
 		index++;
 	}
-	if (master->clues[0][column - 1] == visible)
+	if (master->clues[0][column] == visible)
 		return (check_bottom_clue(master, column));
 	return (0);
 }

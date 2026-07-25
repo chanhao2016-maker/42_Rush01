@@ -16,11 +16,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define MAX_DIRECTION 4
+
 typedef struct s_data
 {
 	char	**grid;
 	char	**clues;
 	int		size;
+	int		solved;
 }	t_data;
 
 void	ft_putchar(char c);
@@ -30,20 +33,14 @@ void	print_solution(t_data *master);
 void	free_memory(char **str, int rows);
 char	**allocate_memory(int rows, int columns);
 char	**create_grid(int size);
-void	put_clues(char **puzzle_grid, char **clues);
 char	**save_clues(char *str, int size);
 
 int		check_left_clue(t_data *master, int row);
 int		check_top_clue(t_data *master, int column);
-int		check_above31_8(int count);
-int		count_n_clue(char *s);
-int		is_valid_input(char **argv);
-int		check_no_duplicate(char **puzzle_grid, int row, int column, int index);
-int		check_column(char **puzzle_board, int row, int column, int digit);
-int		check_row(char **puzzle_board, int row, int column, int digit);
+int		parser(t_data *master, char *str);
+int		check_no_duplicate(t_data *master, int row, int column, int digit);
 
-void	solve_next_row(t_data *master, int row, int column);
-void	rush_recursive(t_data *master, int row, int column);
+int		rush_recursive(t_data *master, int row, int column);
 void	rush(t_data *master);
 
 #endif

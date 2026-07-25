@@ -24,25 +24,21 @@ void	print_error(void)
 
 void	print_solution(t_data *master)
 {
-	int	index;
-	int	j;
+	int	row;
+	int	col;
 
-	index = 1;
-	//if (master->grid[0][0] == '1')
-	//	return ;
-	master->grid[0][0] = '1';
-	while (index <= master->size)
+	row = 0;
+	while (row < master->size)
 	{
-		j = 1;
-		while (j <= master->size)
+		col = 0;
+		while (col < master->size)
 		{
-			ft_putchar(master->grid[index][j]);
-			j++;
-			if (j != master->size + 1)
+			ft_putchar(master->grid[row][col]);
+			if (col < master->size - 1)
 				ft_putchar(' ');
+			col++;
 		}
 		ft_putchar('\n');
-		index++;
+		row++;
 	}
-	write(1, "End\n", 4);
 }

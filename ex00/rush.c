@@ -12,44 +12,54 @@
 
 #include "header.h"
 
-void	solve_next_row(t_data *master, int row, int column)
+int	is_rush_solved(t_data *master, int column)
 {
-	rush_recursive(master, row + 1, 1);
-	if (row == master->size && check_top_clue(master, column))
-		print_solution(master);
+	column = 0;
+	while (column < master->size)
+	{
+		if (!check_top_clue(master, column))
+			return (0);
+		column++;
+	}
+	print_solution(master);
+	master->solved = 1;
+	return (1);
 }
 
-void	rush_recursive(t_data *master, int row, int column)
+int	rush_recursive(t_data *master, int row, int column)
 {
-	int	index;
+	int	digit;
 
-	index = 1;
-	while (index <= master->size && row <= master->size
-		&& column <= master->size)
+	if (row == master->size)
+		return (is_rush_solved(master, column));
+	if (column == master->size)
 	{
-		if (check_no_duplicate(master->grid, row, column, index))
-		{
-			master->grid[row][column] = index + '0';
-			if (row == master->size && !check_top_clue(master, column))
-				return ;
-			if (column == master->size)
-			{
-				if (check_left_clue(master, row))
-					solve_next_row(master, row, column);
-			}
-			else
-				rush_recursive(master, row, column + 1);
-		}
-		index++;
+		if (check_left_clue(master, row))
+			return (rush_recursive(master, row + 1, 0));
+		return (0);
 	}
+	digit = 1;
+	while (digit <= master->size)
+	{
+		if (check_no_duplicate(master, row, column, digit))
+		{
+			master->grid[row][column] = digit + '0';
+			if (rush_recursive(master, row, column + 1))
+				return (1);
+			master->grid[row][column] = '0';
+		}
+		digit++;
+	}
+	return (0);
 }
 
 void	rush(t_data *master)
 {
 	master->grid = create_grid(master->size);
-	put_clues(master->grid, master->clues);
-	rush_recursive(master, 1, 1);
-	if (master->grid[0][0] == '0')
+	master->solved = 0;
+	rush_recursive(master, 0, 0);
+	if (master->solved == 0)
 		print_error();
-	free_memory(master->grid, master->size + 2);
+	free_memory(master->grid, master->size);
+	free_memory(master->clues, MAX_DIRECTION);
 }

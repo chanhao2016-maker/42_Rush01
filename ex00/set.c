@@ -12,19 +12,20 @@
 
 #include "header.h"
 
-void	free_memory(char **str, int rows)
+void	free_memory(char **arr, int rows)
 {
 	int	index;
 
-	if (str == NULL)
+	if (arr == NULL)
 		return ;
 	index = 0;
 	while (index < rows)
 	{
-		if (str[index])
-			free(str[index]);
+		if (arr[index])
+			free(arr[index]);
 		index++;
 	}
+	free(arr);
 }
 
 char	**allocate_memory(int rows, int columns)
@@ -52,12 +53,12 @@ char	**create_grid(int size)
 	int		index;
 	int		j;
 
-	grid = allocate_memory(size + 2, size + 2);
+	grid = allocate_memory(size, size);
 	index = 0;
-	while (index < size + 2)
+	while (index < size)
 	{
 		j = 0;
-		while (j < size + 2)
+		while (j < size)
 		{
 			grid[index][j] = '0';
 			j++;
@@ -65,24 +66,6 @@ char	**create_grid(int size)
 		index++;
 	}
 	return (grid);
-}
-
-void	put_clues(char **puzzle_grid, char **clues)
-{
-	int	index;
-	int	j;
-
-	index = 1;
-	j = 0;
-	while (index <= 4)
-	{
-		puzzle_grid[0][index] = clues[0][j];
-		puzzle_grid[5][index] = clues[1][j];
-		puzzle_grid[index][0] = clues[2][j];
-		puzzle_grid[index][5] = clues[3][j];
-		index++;
-		j++;
-	}
 }
 
 char	**save_clues(char *str, int size)
@@ -93,7 +76,7 @@ char	**save_clues(char *str, int size)
 
 	index = 0;
 	j = 0;
-	clues = allocate_memory(size, size);
+	clues = allocate_memory(MAX_DIRECTION, size);
 	while (j < size)
 	{
 		clues[0][j] = str[index];

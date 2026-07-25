@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
+
 int	ft_strlen(char *s)
 {
 	int	i;
@@ -22,28 +22,41 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	count_n_clue(char *s)
+int	extract_size_from_clues(int *size, char *str)
 {
-	int	total_length;
-	int	n;
+	int	clues_length;
 
-	total_length = ft_strlen(s);
-	n = (total_length + 1) / 8;
-	return (n);
+	clues_length = ft_strlen(str);
+	if ((clues_length + 1) % 8 != 0)
+		return (1);
+	*size = (clues_length + 1) / 8;
+	return (0);
 }
 
-int	check_above31_8(int count)
+int	clues_format_is_valid(int size, char *str)
 {
-	int	i;
+	while (*str)
+	{
+		if (*str < '1' || *str > size + '0' || (*(str + 1)
+				&& *(str + 1) != ' '))
+			return (1);
+		if (*(str + 1) == '\0')
+			break ;
+		str += 2;
+	}
+	return (0);
+}
 
-	i = 8;
-	//while ((count != (31 + i)) && (count > (31 + i)))
-	//	i *= 2;
-	printf("count is %d\n", count);
-	printf("i is %d\n", i);
-	//if (count == 31 || count == (31 + i))
-	if ((count + 1) % 8 == 0)
+int	parser(t_data *master, char *str)
+{
+	int	index;
+
+	index = 0;
+	if (extract_size_from_clues(&master->size, str))
 		return (1);
+	if (clues_format_is_valid(master->size, str))
+		return (1);
+	master->clues = save_clues(str, master->size);
 	return (0);
 }
 
