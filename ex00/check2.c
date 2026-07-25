@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "header.h"
 
+//if (argv[1][index] >= '1' && argv[1][index] <= '4' && index % 2 == 0)
 int	is_valid_input(char **argv)
 {
 	int	index;
@@ -20,7 +21,7 @@ int	is_valid_input(char **argv)
 	count = 0;
 	while (argv[1][index])
 	{
-		if (argv[1][index] >= '1' && argv[1][index] <= '4' && index % 2 == 0)
+		if (argv[1][index] >= '1' && argv[1][index] <= '7' && index % 2 == 0)
 			count++;
 		else if (argv[1][index] == ' ')
 			count++;

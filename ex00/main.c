@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "header.h"
-
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_data	master;
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 	else
 	{
 		master.size = count_n_clue(argv[1]);
-		master.clues = save_clues(argv[1]);
+		master.clues = save_clues(argv[1], master.size);
+		printf("Size is %d\n", master.size);
 		rush(&master);
 		free_memory(master.clues, master.size);
 	}

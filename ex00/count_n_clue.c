@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "header.h"
-
+#include <stdio.h>
 int	ft_strlen(char *s)
 {
 	int	i;
@@ -37,9 +37,12 @@ int	check_above31_8(int count)
 	int	i;
 
 	i = 8;
-	while ((count != (31 + i)) && (count > (31 + i)))
-		i *= 2;
-	if (count == 31 || count == (31 + i))
+	//while ((count != (31 + i)) && (count > (31 + i)))
+	//	i *= 2;
+	printf("count is %d\n", count);
+	printf("i is %d\n", i);
+	//if (count == 31 || count == (31 + i))
+	if ((count + 1) % 8 == 0)
 		return (1);
 	return (0);
 }

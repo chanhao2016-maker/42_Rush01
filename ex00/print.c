@@ -22,26 +22,27 @@ void	print_error(void)
 	write(1, "Error\n", 6);
 }
 
-void	print_solution(char **puzzle_grid)
+void	print_solution(t_data *master)
 {
 	int	index;
 	int	j;
 
 	index = 1;
-	if (puzzle_grid[0][0] == '1')
-		return ;
-	puzzle_grid[0][0] = '1';
-	while (index <= 4)
+	//if (master->grid[0][0] == '1')
+	//	return ;
+	master->grid[0][0] = '1';
+	while (index <= master->size)
 	{
 		j = 1;
-		while (j <= 4)
+		while (j <= master->size)
 		{
-			ft_putchar(puzzle_grid[index][j]);
+			ft_putchar(master->grid[index][j]);
 			j++;
-			if (j != 5)
+			if (j != master->size + 1)
 				ft_putchar(' ');
 		}
 		ft_putchar('\n');
 		index++;
 	}
+	write(1, "End\n", 4);
 }

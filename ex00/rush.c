@@ -16,7 +16,7 @@ void	solve_next_row(t_data *master, int row, int column)
 {
 	rush_recursive(master, row + 1, 1);
 	if (row == master->size && check_top_clue(master, column))
-		print_solution(master->grid);
+		print_solution(master);
 }
 
 void	rush_recursive(t_data *master, int row, int column)
@@ -46,10 +46,10 @@ void	rush_recursive(t_data *master, int row, int column)
 
 void	rush(t_data *master)
 {
-	master->grid = create_grid();
+	master->grid = create_grid(master->size);
 	put_clues(master->grid, master->clues);
 	rush_recursive(master, 1, 1);
 	if (master->grid[0][0] == '0')
 		print_error();
-	free_memory(master->grid, 6);
+	free_memory(master->grid, master->size + 2);
 }

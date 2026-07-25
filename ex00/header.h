@@ -25,13 +25,13 @@ typedef struct s_data
 
 void	ft_putchar(char c);
 void	print_error(void);
-void	print_solution(char **puzzle_grid);
+void	print_solution(t_data *master);
 
 void	free_memory(char **str, int rows);
 char	**allocate_memory(int rows, int columns);
-char	**create_grid(void);
+char	**create_grid(int size);
 void	put_clues(char **puzzle_grid, char **clues);
-char	**save_clues(char *str);
+char	**save_clues(char *str, int size);
 
 int		check_left_clue(t_data *master, int row);
 int		check_top_clue(t_data *master, int column);

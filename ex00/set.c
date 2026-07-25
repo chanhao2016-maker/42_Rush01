@@ -46,18 +46,18 @@ char	**allocate_memory(int rows, int columns)
 	return (board);
 }
 
-char	**create_grid(void)
+char	**create_grid(int size)
 {
 	char	**grid;
 	int		index;
 	int		j;
 
-	grid = allocate_memory(6, 6);
+	grid = allocate_memory(size + 2, size + 2);
 	index = 0;
-	while (index < 6)
+	while (index < size + 2)
 	{
 		j = 0;
-		while (j < 6)
+		while (j < size + 2)
 		{
 			grid[index][j] = '0';
 			j++;
@@ -85,7 +85,7 @@ void	put_clues(char **puzzle_grid, char **clues)
 	}
 }
 
-char	**save_clues(char *str)
+char	**save_clues(char *str, int size)
 {
 	char	**clues;
 	int		index;
@@ -93,13 +93,13 @@ char	**save_clues(char *str)
 
 	index = 0;
 	j = 0;
-	clues = allocate_memory(4, 4);
-	while (j < 4)
+	clues = allocate_memory(size, size);
+	while (j < size)
 	{
 		clues[0][j] = str[index];
-		clues[1][j] = str[index + 8];
-		clues[2][j] = str[index + 16];
-		clues[3][j] = str[index + 24];
+		clues[1][j] = str[index + 2 * size];
+		clues[2][j] = str[index + 4 * size];
+		clues[3][j] = str[index + 6 * size];
 		j++;
 		index += 2;
 	}
