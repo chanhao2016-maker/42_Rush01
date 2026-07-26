@@ -49,9 +49,6 @@ int	clues_format_is_valid(int size, char *str)
 
 int	parser(t_data *master, char *str)
 {
-	int	index;
-
-	index = 0;
 	if (extract_size_from_clues(&master->size, str))
 		return (1);
 	if (clues_format_is_valid(master->size, str))

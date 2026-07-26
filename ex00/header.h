@@ -17,6 +17,7 @@
 # include <unistd.h>
 
 # define MAX_DIRECTION 4
+# define MAX_SIZE 9
 
 typedef struct s_data
 {
@@ -24,6 +25,8 @@ typedef struct s_data
 	char	**clues;
 	int		size;
 	int		solved;
+	int		row_masks[MAX_SIZE];
+	int		col_masks[MAX_SIZE];
 }	t_data;
 
 void	ft_putchar(char c);
@@ -37,9 +40,13 @@ char	**save_clues(char *str, int size);
 
 int		check_left_clue(t_data *master, int row);
 int		check_top_clue(t_data *master, int column);
+int		check_left_clue_partial(t_data *master, int row, int column);
+int		check_top_clue_partial(t_data *master, int row, int column);
 int		parser(t_data *master, char *str);
 int		check_no_duplicate(t_data *master, int row, int column, int digit);
 
+int		is_rush_solved(t_data *master, int column);
+int		is_rush_solved_2(t_data *master, int row);
 int		rush_recursive(t_data *master, int row, int column);
 void	rush(t_data *master);
 
